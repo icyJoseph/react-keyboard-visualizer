@@ -1,0 +1,6 @@
+node_modules/
+build/
+rel/
+assets/
+package-lock.json
+razer-chroma-js/
