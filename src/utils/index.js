@@ -44,17 +44,15 @@ export const segmentInBands = eq => fft => {
   return { gains, avg, bands };
 };
 
-const colorGen = ({ red, green, blue }, val) => ({
-  red: red * val,
-  green: green * val,
-  blue: blue * val
-});
+const black = { red: 0, green: 0, blue: 0 };
 
 export const razerKeyBoardArray = k => ({ gains, avg, colors }) => {
   return gains.map((value, row) => {
     const rate = (k * value) / avg;
-    return Array.from({ length: 22 }, (_, i) =>
-      colorGen(colors[row], Math.round(rate / Math.pow(i, i)))
+    const val = rate > 1 ? Math.round(rate) : 0;
+    return Array.from(
+      { length: 22 },
+      (_, i) => (i > val ? black : colors[row])
     );
   });
 };
