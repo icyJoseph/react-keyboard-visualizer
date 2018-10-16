@@ -54,7 +54,7 @@ export const razerKeyBoardArray = k => ({ gains, avg, colors }) => {
   return gains.map((value, row) => {
     const rate = (k * value) / avg;
     return Array.from({ length: 22 }, (_, i) =>
-      colorGen(colors[row], Math.round(rate / (i * i + 1)))
+      colorGen(colors[row], Math.round(rate / Math.pow(i, i)))
     );
   });
 };
